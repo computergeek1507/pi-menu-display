@@ -16,8 +16,8 @@ screens:
 specials:
   enabled: true
   image_dir: "images/specials"
-  interval_minutes: 15
-  display_duration_seconds: 30
+  interval_minutes: 2
+  display_duration_seconds: 15
   fade_duration_seconds: 2
   max_opacity: 0.85
 
