@@ -1,0 +1,16 @@
+[Unit]
+Description=Pi Menu Display - Screen 1
+After=pi-menu-server.service graphical.target
+Requires=pi-menu-server.service
+PartOf=pi-menu-server.service
+
+[Service]
+Type=simple
+User=pi
+Environment=DISPLAY=:0
+ExecStart=/home/pi/pi-menu-display/scripts/launch-display.sh screen1 0 8080
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=graphical.target

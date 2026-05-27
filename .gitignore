@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+images/screen1/*
+images/screen2/*
+images/specials/screen1/*
+images/specials/screen2/*
+!images/**/.gitkeep
+test_*.png

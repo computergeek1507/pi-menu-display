@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ screen_name }}</title>
+    <link rel="stylesheet" href="/static/css/display.css">
+</head>
+<body>
+    <div id="main-image-container">
+        {% if images %}
+        <img id="main-image" src="{{ image_base }}/{{ images[0] }}" alt="{{ screen_name }}">
+        {% if images | length > 1 %}
+        <img id="next-image" src="" alt="" class="hidden">
+        {% endif %}
+        {% else %}
+        <div id="no-image">No menu image uploaded for {{ screen_name }}</div>
+        {% endif %}
+    </div>
+
+    <div id="specials-overlay">
+        <img id="specials-image" src="" alt="Monthly Special">
+    </div>
+
+    <script>
+        const SCREEN_ID = "{{ screen_id }}";
+        const IMAGE_BASE = "{{ image_base }}";
+        const IMAGES = {{ images | tojson }};
+        const ROTATION_INTERVAL = {{ rotation_interval }};
+        const SPECIALS = {{ specials | tojson }};
+    </script>
+    <script src="/static/js/display.js"></script>
+</body>
+</html>

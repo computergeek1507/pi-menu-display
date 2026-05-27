@@ -1,0 +1,26 @@
+server:
+  host: "0.0.0.0"
+  port: 8080
+
+screens:
+  screen1:
+    name: "Shack Menu"
+    image_dir: "images/screen1"
+    rotation_interval: 0
+
+  screen2:
+    name: "Tea Menu"
+    image_dir: "images/screen2"
+    rotation_interval: 0
+
+specials:
+  enabled: true
+  image_dir: "images/specials"
+  interval_minutes: 15
+  display_duration_seconds: 30
+  fade_duration_seconds: 2
+  max_opacity: 0.85
+
+images:
+  max_upload_mb: 20
+  allowed_extensions: [".jpg", ".jpeg", ".png", ".bmp", ".webp"]

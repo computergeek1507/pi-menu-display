@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Display - Admin</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <header>
+        <h1>Menu Display Manager</h1>
+        <div class="links">
+            {% for sid, scfg in screens.items() %}
+            <a href="/display/{{ sid }}" target="_blank">Preview {{ scfg.name }}</a>
+            {% endfor %}
+        </div>
+    </header>
+
+    <main>
+        {% for sid, scfg in screens.items() %}
+        <section class="screen-section" data-target="{{ sid }}">
+            <h2>{{ scfg.name }}</h2>
+            <div class="upload-zone" id="drop-{{ sid }}">
+                <p>Drag &amp; drop an image here, or click to select</p>
+                <input type="file" accept="image/*" class="file-input" data-target="{{ sid }}">
+            </div>
+            <div class="image-list" id="images-{{ sid }}">
+                {% for img in scfg.images %}
+                <div class="image-card">
+                    <img src="/{{ config.screens[sid].image_dir }}/{{ img.name }}" alt="{{ img.name }}">
+                    <div class="image-info">
+                        <span class="filename">{{ img.name }}</span>
+                        <span class="filesize">{{ (img.size / 1024) | round(1) }} KB</span>
+                        <button class="delete-btn" data-target="{{ sid }}" data-filename="{{ img.name }}">Delete</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+
+        {% for sid, scfg in screens.items() %}
+        <section class="screen-section" data-target="specials-{{ sid }}">
+            <h2>Monthly Specials — {{ scfg.name }}</h2>
+            <p class="hint">Name files by month: january.jpg, february.png, etc.</p>
+            <div class="upload-zone" id="drop-specials-{{ sid }}">
+                <p>Drag &amp; drop a monthly special for {{ scfg.name }}, or click to select</p>
+                <input type="file" accept="image/*" class="file-input" data-target="specials-{{ sid }}">
+            </div>
+            <div class="image-list" id="images-specials-{{ sid }}">
+                {% for img in specials[sid] %}
+                <div class="image-card">
+                    <img src="/{{ config.specials.image_dir }}/{{ sid }}/{{ img.name }}" alt="{{ img.name }}">
+                    <div class="image-info">
+                        <span class="filename">{{ img.name }}</span>
+                        <span class="filesize">{{ (img.size / 1024) | round(1) }} KB</span>
+                        <button class="delete-btn" data-target="specials-{{ sid }}" data-filename="{{ img.name }}">Delete</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>
